@@ -1,12 +1,12 @@
-# i3 config file (v4)
+# sway config file
 #
 ################################################################################################################
 #
-# apt install rofi xfce4-clipman gxkb
+# apt install wofi clipman gxkb
 #
 ################################################################################################################
 # Set mod
-set $mod Mod4
+set $mod Mod1
 # Start apps
 # start a terminal
 bindsym $mod+Return exec sakura
@@ -116,7 +116,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'swaymsg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -164,9 +164,9 @@ assign [class="Yandex-browser"] $ws7
 for_window [title="Picture-in-Picture"] sticky enable
 
 # New tiling windows with title bar and borders
-new_window normal 2
+# new_window normal 2
 # New floating windows with title bar and without borders
-new_float normal 0
+# new_float normal 0
 # Hide borders on edges
 hide_edge_borders both
 
@@ -186,28 +186,24 @@ set $UNFLOAT floating disable, border normal 1
 font pango:Fira Code Mono 8
 font pango:PowerlineSymbols 8
 bar {
-        status_command    bumblebee-status \
-                         -m title cpu memory pasink datetime \
-                         -p datetime.format="%d.%m.%Y %H:%M:%S" title.max=256 \
-                         -t iceberg-rainbow
+        status_command waybar
 }
 ################################################################################################################
 # autostart
 ################################################################################################################
-# exec --no-startup-id dex --autostart --environment i3
 exec_always --no-startup-id "/usr/bin/setxkbmap -model pc105 -layout us,ua -variant ,, -option grp:caps_toggle"
 # exec_always --no-startup-id  workstyle &> /tmp/workstyle.log
 exec --no-startup-id gxkb
 exec --no-startup-id /usr/bin/vmware-user-suid-wrapper
-exec --no-startup-id /usr/bin/xfce4-clipman
+exec --no-startup-id /usr/bin/clipman
 exec --no-startup-id /usr/bin/google-drive-ocamlfuse /home/nill/googleone/
 # To workspaces
-exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/sakura; workspace $ws7'
-exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/code-insiders; workspace $ws7'
-exec --no-startup-id i3-msg 'workspace $ws3; exec /snap/bin/firefox; workspace $ws7'
-exec --no-startup-id i3-msg 'workspace $ws4; exec /home/nill/.local/bin/bitwarden; workspace $ws7'
-exec --no-startup-id i3-msg 'workspace $ws5; exec /snap/bin/telegram-desktop; workspace $ws7'
-exec --no-startup-id i3-msg 'workspace $ws7; exec /usr/local/bin/yandex-browser; workspace $ws1'
+exec --no-startup-id swaymsg 'workspace $ws1; exec /usr/bin/sakura; workspace $ws7'
+exec --no-startup-id swaymsg 'workspace $ws2; exec /usr/bin/code-insiders; workspace $ws7'
+# exec --no-startup-id swaymsg 'workspace $ws3; exec /snap/bin/firefox; workspace $ws7'
+exec --no-startup-id swaymsg 'workspace $ws4; exec /home/nill/.local/bin/bitwarden; workspace $ws7'
+exec --no-startup-id swaymsg 'workspace $ws5; exec /snap/bin/telegram-desktop; workspace $ws7'
+exec --no-startup-id swaymsg 'workspace $ws7; exec /usr/local/bin/yandex-browser; workspace $ws1'
 ################################################################################################################
 # End autostart
 ################################################################################################################
