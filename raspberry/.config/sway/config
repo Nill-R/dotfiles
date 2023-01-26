@@ -180,8 +180,8 @@ set $UNFLOAT floating disable, border normal 1
 ################################################################################################################
 # bar
 ################################################################################################################
-font pango:Fira Code Mono 18
-font pango:PowerlineSymbols 18
+font pango:Fira Code Mono 8
+font pango:PowerlineSymbols 8
 bar {
         swaybar_command waybar
 }
