@@ -6,14 +6,15 @@
 #
 ################################################################################################################
 # Set mod
-set $mod Mod1
+set $mod Mod4
 # Start apps
 # start a terminal
 bindsym $mod+Return exec sakura
 # start browser
 bindsym $mod+b exec firefox
 # start launcher
-bindsym $mod+d exec "wofi -show run"
+bindsym $mod+d exec $menu
+set $menu wofi --show run | xargs swaymsg exec
 #End apps
 
 # Use pactl to adjust volume in PulseAudio.
@@ -113,10 +114,6 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'swaymsg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -183,10 +180,10 @@ set $UNFLOAT floating disable, border normal 1
 ################################################################################################################
 # bar
 ################################################################################################################
-font pango:Fira Code Mono 8
-font pango:PowerlineSymbols 8
+font pango:Fira Code Mono 18
+font pango:PowerlineSymbols 18
 bar {
-        status_command waybar
+        swaybar_command waybar
 }
 ################################################################################################################
 # autostart
@@ -203,3 +200,9 @@ exec --no-startup-id swaymsg 'workspace $ws5; exec /usr/bin/telegram-desktop; wo
 ################################################################################################################
 # End autostart
 ################################################################################################################
+
+input * {
+    xkb_layout "us,ua"
+    xkb_variant ",,"
+    xkb_options "grp:win_space_toggle"
+}
