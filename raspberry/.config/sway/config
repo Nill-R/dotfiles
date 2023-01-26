@@ -191,16 +191,15 @@ bar {
 ################################################################################################################
 # autostart
 ################################################################################################################
-exec_always --no-startup-id "/usr/bin/setxkbmap -model pc105 -layout us,ua -variant ,, -option grp:caps_toggle"
+# exec_always --no-startup-id "/usr/bin/setxkbmap -model pc105 -layout us,ua -variant ,, -option grp:caps_toggle"
+exec --no-startup-id /usr/bin/google-drive-ocamlfuse /home/nill/googleone/
 exec  --no-startup-id /usr/bin/copyq
-# exec --no-startup-id /usr/bin/google-drive-ocamlfuse /home/nill/googleone/
 # To workspaces
 exec --no-startup-id swaymsg 'workspace $ws1; exec /usr/bin/sakura; workspace $ws7'
 # exec --no-startup-id swaymsg 'workspace $ws2; exec /usr/bin/code-insiders; workspace $ws7'
 exec --no-startup-id swaymsg 'workspace $ws3; exec /usr/bin/firefox; workspace $ws7'
 #exec --no-startup-id swaymsg 'workspace $ws4; exec /home/nill/.local/bin/bitwarden; workspace $ws7'
 exec --no-startup-id swaymsg 'workspace $ws5; exec /usr/bin/telegram-desktop; workspace $ws7'
-#exec --no-startup-id swaymsg 'workspace $ws7; exec /usr/local/bin/yandex-browser; workspace $ws1'
 ################################################################################################################
 # End autostart
 ################################################################################################################
