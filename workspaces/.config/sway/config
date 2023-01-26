@@ -2,7 +2,7 @@
 #
 ################################################################################################################
 #
-# apt install wofi clipman gxkb
+# apt install wofi copyq  gxkb
 #
 ################################################################################################################
 # Set mod
@@ -195,8 +195,8 @@ exec_always --no-startup-id "/usr/bin/setxkbmap -model pc105 -layout us,ua -vari
 # exec_always --no-startup-id  workstyle &> /tmp/workstyle.log
 exec --no-startup-id gxkb
 exec --no-startup-id /usr/bin/vmware-user-suid-wrapper
-exec --no-startup-id /usr/bin/clipman
-exec --no-startup-id /usr/bin/google-drive-ocamlfuse /home/nill/googleone/
+exec  --no-startup-id /usr/bin/copyq
+# exec --no-startup-id /usr/bin/google-drive-ocamlfuse /home/nill/googleone/
 # To workspaces
 exec --no-startup-id swaymsg 'workspace $ws1; exec /usr/bin/sakura; workspace $ws7'
 exec --no-startup-id swaymsg 'workspace $ws2; exec /usr/bin/code-insiders; workspace $ws7'
