@@ -2,7 +2,7 @@
 #
 ################################################################################################################
 #
-# apt install wofi copyq  gxkb
+# apt install wofi copyq
 #
 ################################################################################################################
 # Set mod
@@ -141,6 +141,7 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
 ################################################################################################################
 workspace_auto_back_and_forth yes
 workspace_layout tabbed
@@ -182,27 +183,34 @@ set $UNFLOAT floating disable, border normal 1
 ################################################################################################################
 font pango:Fira Code Mono 8
 font pango:PowerlineSymbols 8
+font pango:FontAwesome 8
 bar {
         swaybar_command waybar
 }
 ################################################################################################################
 # autostart
 ################################################################################################################
-# exec_always --no-startup-id "/usr/bin/setxkbmap -model pc105 -layout us,ua -variant ,, -option grp:caps_toggle"
-exec --no-startup-id /usr/bin/google-drive-ocamlfuse /home/nill/googleone/
+
+exec --no-startup-id /usr/bin/google-drive-ocamlfuse $HOME/googleone/
 exec  --no-startup-id /usr/bin/copyq
+
 # To workspaces
 exec --no-startup-id swaymsg 'workspace $ws1; exec /usr/bin/sakura; workspace $ws7'
 # exec --no-startup-id swaymsg 'workspace $ws2; exec /usr/bin/code-insiders; workspace $ws7'
 exec --no-startup-id swaymsg 'workspace $ws3; exec /usr/bin/firefox; workspace $ws7'
-#exec --no-startup-id swaymsg 'workspace $ws4; exec /home/nill/.local/bin/bitwarden; workspace $ws7'
+#exec --no-startup-id swaymsg 'workspace $ws4; exec $HOME/.local/bin/bitwarden; workspace $ws7'
 exec --no-startup-id swaymsg 'workspace $ws5; exec /usr/bin/telegram-desktop; workspace $ws7'
 ################################################################################################################
 # End autostart
 ################################################################################################################
-
+################################################################################################################
+# Keyboard layout
+################################################################################################################
 input * {
     xkb_layout "us,ua"
     xkb_variant ",,"
     xkb_options "grp:win_space_toggle"
 }
+################################################################################################################
+# End keyboard layout
+################################################################################################################
