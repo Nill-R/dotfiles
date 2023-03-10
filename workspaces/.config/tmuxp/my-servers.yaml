@@ -1,0 +1,11 @@
+session_name: my-servers
+windows:
+  - window_name: it.lindon.pw
+    focus: true
+    panes:
+      - shell_command:
+          - autossh it.lindon.pw
+  - window_name: tr.lindon.pw
+    panes:
+      - shell_command:
+          - autossh tr.lindon.pw
