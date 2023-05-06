@@ -1,8 +1,8 @@
-# sway config file
+# i3 config file (v4)
 #
 ################################################################################################################
 #
-# apt install wofi copyq
+# apt install rofi xfce4-clipman gxkb
 #
 ################################################################################################################
 # Set mod
@@ -13,8 +13,7 @@ bindsym $mod+Return exec sakura
 # start browser
 bindsym $mod+b exec firefox
 # start launcher
-bindsym $mod+d exec $menu
-set $menu wofi --show run | xargs swaymsg exec
+bindsym $mod+d exec "rofi -modi drun,run -show drun"
 #End apps
 
 # Use pactl to adjust volume in PulseAudio.
@@ -114,6 +113,10 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -141,7 +144,6 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
 ################################################################################################################
 workspace_auto_back_and_forth yes
 workspace_layout tabbed
@@ -162,9 +164,9 @@ assign [class="Yandex-browser"] $ws7
 for_window [title="Picture-in-Picture"] sticky enable
 
 # New tiling windows with title bar and borders
-# new_window normal 2
+new_window normal 2
 # New floating windows with title bar and without borders
-# new_float normal 0
+new_float normal 0
 # Hide borders on edges
 hide_edge_borders both
 
@@ -183,34 +185,27 @@ set $UNFLOAT floating disable, border normal 1
 ################################################################################################################
 font pango:Fira Code Mono 8
 font pango:PowerlineSymbols 8
-font pango:FontAwesome 8
 bar {
-        swaybar_command waybar
+        status_command    bumblebee-status \
+                         -m title cpu memory pasink datetime \
+                         -p datetime.format="%d.%m.%Y %H:%M:%S" title.max=256 \
+                         -t iceberg-rainbow
 }
 ################################################################################################################
 # autostart
 ################################################################################################################
-
-exec --no-startup-id /usr/bin/google-drive-ocamlfuse $HOME/googleone/
-exec --no-startup-id /usr/bin/copyq
-exec --no-startup-id /usr/bin/wayvnc -f 120 192.168.0.205
+# exec --no-startup-id dex --autostart --environment i3
+exec_always --no-startup-id "/usr/bin/setxkbmap -model pc105 -layout us,ua,ru -variant ,, -option grp:caps_toggle"
+# exec_always --no-startup-id  workstyle &> /tmp/workstyle.log
+exec --no-startup-id gxkb
+# exec --no-startup-id /usr/bin/google-drive-ocamlfuse /home/nill/googleone/
 # To workspaces
-exec --no-startup-id swaymsg 'workspace $ws1; exec /usr/bin/sakura; workspace $ws7'
-# exec --no-startup-id swaymsg 'workspace $ws2; exec /usr/bin/code-insiders; workspace $ws7'
-exec --no-startup-id swaymsg 'workspace $ws3; exec /usr/bin/firefox; workspace $ws7'
-#exec --no-startup-id swaymsg 'workspace $ws4; exec $HOME/.local/bin/bitwarden; workspace $ws7'
-exec --no-startup-id swaymsg 'workspace $ws5; exec /usr/bin/telegram-desktop; workspace $ws7'
+exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/sakura; workspace $ws7'
+# exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/code-insiders; workspace $ws7'
+exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/firefox; workspace $ws7'
+# exec --no-startup-id i3-msg 'workspace $ws4; exec /home/nill/.local/bin/bitwarden; workspace $ws7'
+exec --no-startup-id i3-msg 'workspace $ws5; exec /snap/bin/telegram-desktop; workspace $ws7'
+# exec --no-startup-id i3-msg 'workspace $ws7; exec /usr/local/bin/yandex-browser; workspace $ws1'
 ################################################################################################################
 # End autostart
-################################################################################################################
-################################################################################################################
-# Keyboard layout
-################################################################################################################
-input * {
-    xkb_layout "us,ua"
-    xkb_variant ",,"
-    xkb_options "grp:win_space_toggle"
-}
-################################################################################################################
-# End keyboard layout
 ################################################################################################################
