@@ -197,7 +197,7 @@ bar {
 # autostart
 ################################################################################################################
 # exec --no-startup-id dex --autostart --environment i3
-exec_always --no-startup-id "/usr/bin/setxkbmap -model pc105 -layout us,ua -variant ,, -option grp:caps_toggle"
+exec_always --no-startup-id "/usr/bin/setxkbmap -model pc105 -layout us,ua,ru -variant ,, -option grp:caps_toggle"
 # exec_always --no-startup-id  workstyle &> /tmp/workstyle.log
 exec --no-startup-id gxkb
 exec --no-startup-id /usr/bin/vmware-user-suid-wrapper
