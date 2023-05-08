@@ -9,7 +9,7 @@
 set $mod Mod4
 # Start apps
 # start a terminal
-bindsym $mod+Return exec /usr/bin/alacritty
+bindsym $mod+Return exec sakura
 # start browser
 bindsym $mod+b exec firefox
 # start launcher
@@ -154,8 +154,6 @@ for_window [window_role="task_dialog"] floating enable
 no_focus [window_role="pop-up"]
 #
 assign [title="Sakura"]  $ws1
-assign [title="st"] $ws1
-assign [title="Alacritty"] $ws1
 assign [title="Insiders$"] $ws2
 assign [title="Firefox"] $ws3
 assign [title="Bitwarden"] $ws4
@@ -185,8 +183,8 @@ set $UNFLOAT floating disable, border normal 1
 ################################################################################################################
 # bar
 ################################################################################################################
-font pango:Fira Code Mono 12
-font pango:PowerlineSymbols 12
+font pango:Fira Code Mono 8
+font pango:PowerlineSymbols 8
 bar {
         status_command    bumblebee-status \
                          -m title cpu memory pasink datetime \
@@ -200,16 +198,14 @@ bar {
 exec_always --no-startup-id "/usr/bin/setxkbmap -model pc105 -layout us,ua,ru -variant ,, -option grp:caps_toggle"
 # exec_always --no-startup-id  workstyle &> /tmp/workstyle.log
 exec --no-startup-id gxkb
-exec --no-startup-id /usr/bin/vmware-user-suid-wrapper
-exec --no-startup-id /usr/bin/xfce4-clipman
-exec --no-startup-id /usr/bin/google-drive-ocamlfuse /home/nill/googleone/
+# exec --no-startup-id /usr/bin/google-drive-ocamlfuse /home/nill/googleone/
 # To workspaces
-exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/alacritty; workspace $ws7'
-exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/code-insiders; workspace $ws7'
-exec --no-startup-id i3-msg 'workspace $ws3; exec /snap/bin/firefox; workspace $ws7'
-exec --no-startup-id i3-msg 'workspace $ws4; exec /home/nill/.local/bin/bitwarden; workspace $ws7'
+exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/sakura; workspace $ws7'
+# exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/code-insiders; workspace $ws7'
+exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/firefox; workspace $ws7'
+# exec --no-startup-id i3-msg 'workspace $ws4; exec /home/nill/.local/bin/bitwarden; workspace $ws7'
 exec --no-startup-id i3-msg 'workspace $ws5; exec /snap/bin/telegram-desktop; workspace $ws7'
-exec --no-startup-id i3-msg 'workspace $ws7; exec /usr/local/bin/yandex-browser; workspace $ws1'
+# exec --no-startup-id i3-msg 'workspace $ws7; exec /usr/local/bin/yandex-browser; workspace $ws1'
 ################################################################################################################
 # End autostart
 ################################################################################################################
