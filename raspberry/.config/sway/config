@@ -192,8 +192,8 @@ bar {
 ################################################################################################################
 
 exec --no-startup-id /usr/bin/google-drive-ocamlfuse $HOME/googleone/
-exec  --no-startup-id /usr/bin/copyq
-
+exec --no-startup-id /usr/bin/copyq
+exec --no-startup-id /usr/bin/wayvnc -f 120 192.168.0.205
 # To workspaces
 exec --no-startup-id swaymsg 'workspace $ws1; exec /usr/bin/sakura; workspace $ws7'
 # exec --no-startup-id swaymsg 'workspace $ws2; exec /usr/bin/code-insiders; workspace $ws7'
