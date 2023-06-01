@@ -9,7 +9,7 @@
 set $mod Mod4
 # Start apps
 # start a terminal
-bindsym $mod+Return exec /usr/bin/alacritty
+bindsym $mod+Return exec /usr/bin/sakura
 # start browser
 bindsym $mod+b exec firefox
 # start launcher
