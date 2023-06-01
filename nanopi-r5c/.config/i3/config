@@ -1,8 +1,8 @@
-# sway config file
+# i3 config file (v4)
 #
 ################################################################################################################
 #
-# apt install wofi copyq
+# apt install rofi xfce4-clipman gxkb
 #
 ################################################################################################################
 # Set mod
@@ -13,11 +13,15 @@ bindsym $mod+Return exec sakura
 # start browser
 bindsym $mod+b exec firefox
 # start launcher
-bindsym $mod+d exec $menu
-set $menu wofi --show run | xargs swaymsg exec
+bindsym $mod+d exec "rofi -modi drun,run -show drun"
 #End apps
+mode "pass-through" {
+    bindsym $mod+t mode "default"
+}
 
+bindsym $mod+t mode "pass-through"
 # Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
@@ -29,11 +33,23 @@ floating_modifier $mod
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -70,10 +86,10 @@ set $ws3 "3: Web "
 set $ws4 "4: BW"
 set $ws5 "5: IM  "
 set $ws6 "6: Joplin"
-set $ws7 "7: Default"
+set $ws7 "7: Seven"
 set $ws8 "8: Eight"
 set $ws9 "9: Nine"
-set $ws10 "10: Ten"
+set $ws10 "10: Default"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -101,6 +117,10 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -128,12 +148,11 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-bindsym $mod+L exec swaylock
-
 ################################################################################################################
 workspace_auto_back_and_forth yes
 workspace_layout tabbed
 ################################################################################################################
+for_window [title="Steam$"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 no_focus [window_role="pop-up"]
@@ -144,13 +163,14 @@ assign [title="Firefox"] $ws3
 assign [title="Bitwarden"] $ws4
 assign [class="TelegramDesktop"] $ws5
 assign [title="Joplin"] $ws6
+#assign [class="Yandex-browser"] $ws7
 #
 for_window [title="Picture-in-Picture"] sticky enable
 
 # New tiling windows with title bar and borders
-# new_window normal 2
+new_window normal 2
 # New floating windows with title bar and without borders
-# new_float normal 0
+new_float normal 0
 # Hide borders on edges
 hide_edge_borders both
 
@@ -169,35 +189,29 @@ set $UNFLOAT floating disable, border normal 1
 ################################################################################################################
 font pango:Fira Code Mono 8
 font pango:PowerlineSymbols 8
-font pango:FontAwesome 8
-font pango:Noto 8
 bar {
-        swaybar_command waybar
+        status_command    bumblebee-status \
+                         -m title cpu load memory datetime indicator \
+                         -p datetime.format="%d.%m.%Y %H:%M:%S" title.max=256 \
+                         -t night-powerline
 }
 ################################################################################################################
 # autostart
 ################################################################################################################
-
-exec --no-startup-id /usr/bin/google-drive-ocamlfuse $HOME/googleone/
-exec --no-startup-id /usr/bin/copyq
-exec --no-startup-id /usr/bin/wayvnc -f 120 192.168.0.205
+# exec --no-startup-id dex --autostart --environment i3
+exec_always --no-startup-id "/usr/bin/setxkbmap -model pc105 -layout us,ua,ru -variant ,, -option grp:caps_toggle"
+exec --no-startup-id gxkb
+# exec --no-startup-id /usr/bin/xfce4-clipman
+# exec --no-startup-id /usr/bin/google-drive-ocamlfuse /home/nill/googleone/
+exec --no-startup-id /usr/bin/x11vnc -nopw -rfbport 5900 -forever -bg -repeat -nowf -o ~/.vnc/x11vnc.log
+exec --no-startup-id /usr/bin/barrierc --disable-crypto 192.168.1.0
+exec --no-startup-id /usr/bin/blueman-applet
 # To workspaces
-exec --no-startup-id swaymsg 'workspace $ws1; exec /usr/bin/sakura; workspace $ws7'
-# exec --no-startup-id swaymsg 'workspace $ws2; exec /usr/bin/code-insiders; workspace $ws7'
-exec --no-startup-id swaymsg 'workspace $ws3; exec /usr/bin/firefox; workspace $ws7'
-#exec --no-startup-id swaymsg 'workspace $ws4; exec $HOME/.local/bin/bitwarden; workspace $ws7'
-exec --no-startup-id swaymsg 'workspace $ws5; exec /usr/bin/telegram-desktop; workspace $ws7'
+exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/sakura; workspace $ws10'
+#exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/code-insiders; workspace $ws7'
+exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/firefox; workspace $ws10'
+#exec --no-startup-id i3-msg 'workspace $ws4; exec /home/nill/.local/bin/bitwarden; workspace $ws7'
+#exec --no-startup-id i3-msg 'workspace $ws5; exec flatpak run org.telegram.desktop; workspace $ws7'
 ################################################################################################################
 # End autostart
-################################################################################################################
-################################################################################################################
-# Keyboard layout
-################################################################################################################
-input * {
-    xkb_layout "us,ua,ru"
-    xkb_variant ",,"
-    xkb_options "grp:win_space_toggle"
-}
-################################################################################################################
-# End keyboard layout
 ################################################################################################################
