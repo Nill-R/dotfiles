@@ -2,7 +2,7 @@
 #
 ################################################################################################################
 #
-# apt install rofi xfce4-clipman gxkb
+# apt install rofi gxkb
 #
 ################################################################################################################
 # Set mod
@@ -82,7 +82,7 @@ set $ws3 "3: Web "
 set $ws4 "4: BW"
 set $ws5 "5: IM  "
 set $ws6 "6: Joplin"
-set $ws7 "7: Yandex.Browser"
+set $ws7 "7: Browser"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
@@ -162,6 +162,7 @@ assign [title="Bitwarden"] $ws4
 assign [class="TelegramDesktop"] $ws5
 assign [title="Joplin"] $ws6
 assign [class="Yandex-browser"] $ws7
+assign [class="Microsoft Edge"] $ws7
 #
 for_window [title="Picture-in-Picture"] sticky enable
 
@@ -185,31 +186,29 @@ set $UNFLOAT floating disable, border normal 1
 ################################################################################################################
 # bar
 ################################################################################################################
-font pango:Fira Code Mono 12
-font pango:PowerlineSymbols 12
+font pango:Fira Code Mono 14
+font pango:PowerlineSymbols 14
 bar {
         status_command    bumblebee-status \
-                         -m title cpu memory pasink datetime \
+                         -m title cpu memory datetime \
                          -p datetime.format="%d.%m.%Y %H:%M:%S" title.max=256 \
                          -t iceberg-rainbow
 }
 ################################################################################################################
 # autostart
 ################################################################################################################
-# exec --no-startup-id dex --autostart --environment i3
-exec_always --no-startup-id "/usr/bin/setxkbmap -model pc105 -layout us,ua,ru -variant ,, -option grp:caps_toggle"
-# exec_always --no-startup-id  workstyle &> /tmp/workstyle.log
+exec_always --no-startup-id "/usr/bin/setxkbmap -model pc105 -layout us,ru -variant ,, -option grp:caps_toggle"
 exec --no-startup-id gxkb
+exec --no-startup-id /usr/bin/copyq
 exec --no-startup-id /usr/bin/vmware-user-suid-wrapper
-exec --no-startup-id /usr/bin/xfce4-clipman
 exec --no-startup-id /usr/bin/google-drive-ocamlfuse /home/nill/googleone/
 # To workspaces
-exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/alacritty; workspace $ws7'
+exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/sakura; workspace $ws7'
 exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/code-insiders; workspace $ws7'
 exec --no-startup-id i3-msg 'workspace $ws3; exec /snap/bin/firefox; workspace $ws7'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /home/nill/.local/bin/bitwarden; workspace $ws7'
 exec --no-startup-id i3-msg 'workspace $ws5; exec /snap/bin/telegram-desktop; workspace $ws7'
-exec --no-startup-id i3-msg 'workspace $ws7; exec /usr/local/bin/yandex-browser; workspace $ws1'
+exec --no-startup-id i3-msg 'workspace $ws7; exec /usr/local/bin/microsoft-edge; workspace $ws1'
 ################################################################################################################
 # End autostart
 ################################################################################################################
