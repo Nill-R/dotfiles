@@ -82,7 +82,7 @@ set $ws3 "3: Web "
 set $ws4 "4: BW"
 set $ws5 "5: IM  "
 set $ws6 "6: Joplin"
-set $ws7 "7: Browser"
+set $ws7 "7: Direct Browser"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
@@ -161,6 +161,7 @@ assign [title="Firefox"] $ws3
 assign [title="Bitwarden"] $ws4
 assign [class="TelegramDesktop"] $ws5
 assign [title="Joplin"] $ws6
+assign [title="Microsoft Edge$"] $ws7
 assign [class="Yandex-browser"] $ws7
 assign [class="Microsoft Edge"] $ws7
 #
@@ -189,10 +190,11 @@ set $UNFLOAT floating disable, border normal 1
 font pango:Fira Code Mono 14
 font pango:PowerlineSymbols 14
 bar {
-        status_command    bumblebee-status \
-                         -m title cpu memory datetime \
-                         -p datetime.format="%d.%m.%Y %H:%M:%S" title.max=256 \
-                         -t iceberg-rainbow
+#        status_command    bumblebee-status \
+#                         -m title cpu memory datetime \
+#                         -p datetime.format="%d.%m.%Y %H:%M:%S" title.max=256 \
+#                         -t iceberg-rainbow
+	status_command ~/.nix-profile/bin/i3status-rs
 }
 ################################################################################################################
 # autostart
