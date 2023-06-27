@@ -161,7 +161,7 @@ assign [title="Firefox"] $ws3
 assign [title="Bitwarden"] $ws4
 assign [class="TelegramDesktop"] $ws5
 assign [title="Joplin"] $ws6
-assign [title="Microsoft Edge$"] $ws7
+assign [title="$Microsoft Edge$"] $ws7
 assign [class="Yandex-browser"] $ws7
 assign [class="Microsoft Edge"] $ws7
 #
