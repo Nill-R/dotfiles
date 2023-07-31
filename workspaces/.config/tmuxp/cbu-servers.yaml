@@ -1,0 +1,11 @@
+session_name: CBU Servers
+windows:
+  - window_name: CBU prod
+    panes:
+      - autossh cbu-prod-ssh.ingolonde.pw
+  - window_name: CBU git(dev)
+    panes:
+      - autossh cbu-git-ssh.ingolonde.pw
+  - window_name: CBU tbot
+    panes:
+      - autossh cbu-tbot-ssh.ingolonde.pw

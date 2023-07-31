@@ -1,0 +1,12 @@
+session_name: MG/Elbrus
+windows:
+  - window_name: elbrus.tours
+    panes:
+      - autossh elbrus.tours
+  - window_name: elbrusrental
+    panes:
+      - autossh elbrusrental.ru
+  - window_name: Twice
+    panes:
+      - autossh elbrus.tours
+      - autossh elbrusrental.ru

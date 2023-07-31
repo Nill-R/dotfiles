@@ -1,0 +1,15 @@
+session_name: Monitoring Servers
+windows:
+  - window_name: mon-PL
+    panes:
+      - autossh elbrusrental-ssh.ingolonde.pw
+  - window_name: mon-IL
+    panes:
+      - autossh israel-ssh.ingolonde.pw
+  - window_name: mon-IT
+    panes:
+      - autossh it.lindon.pw
+  - window_name: ex-RU
+    panes:
+      - autossh redoo-ssh.ingolonde.pw
+

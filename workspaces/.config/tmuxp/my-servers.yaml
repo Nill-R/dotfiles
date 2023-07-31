@@ -1,11 +1,22 @@
-session_name: my-servers
+session_name: My Servers
 windows:
-  - window_name: it.lindon.pw
-    focus: true
+  - window_name: ihor
     panes:
-      - shell_command:
-          - autossh it.lindon.pw
-  - window_name: tr.lindon.pw
+      - autossh ru.lindon.pw
+  - window_name: Israel
     panes:
-      - shell_command:
-          - autossh tr.lindon.pw
+      - autossh israel-ssh.ingolonde.pw
+  - window_name: aruba
+    panes:
+      - autossh it.lindon.pw
+  - window_name: Vultr
+    panes:
+      - autossh us.lindon.pw
+  - window_name: Raspberry
+    panes:
+      - autossh 192.168.0.205
+  - window_name: NanoPi
+    panes:
+      - autossh 192.168.1.205
+
+

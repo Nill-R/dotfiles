@@ -1,0 +1,18 @@
+session_name: VPN Servers
+windows:
+  - window_name: VPN-RU
+    panes:
+      - autossh ru.lindon.pw
+  - window_name: VPN-IL
+    panes:
+      - autossh israel-ssh.ingolonde.pw
+  - window_name: VPN-IT
+    panes:
+      - autossh it.lindon.pw
+  - window_name: VPN-DE
+    panes:
+      - autossh de.lindon.pw
+  - window_name: VPN-PL
+    panes:
+      - autossh pl.lindon.pw
+
