@@ -162,7 +162,8 @@ assign [title="Bitwarden"] $ws4
 assign [class="TelegramDesktop"] $ws5
 assign [title="Joplin"] $ws6
 assign [class="Yandex-browser"] $ws3
-assign [class="microsoft-edge"] $ws3
+assign [class="microsoft-edge"] $ws7
+assign [class="Microsoft-edge"] $ws7
 #
 for_window [title="Picture-in-Picture"] sticky enable
 
@@ -208,8 +209,8 @@ exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/sakura; workspace $ws
 exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/code-insiders; workspace $ws7'
 exec --no-startup-id i3-msg 'workspace $ws3; exec /snap/bin/firefox; workspace $ws7'
 exec --no-startup-id i3-msg 'workspace $ws4; exec /home/nill/.local/bin/bitwarden; workspace $ws7'
-exec --no-startup-id i3-msg 'workspace $ws5; exec /snap/bin/telegram-desktop; workspace $ws7'
-exec --no-startup-id i3-msg 'workspace $ws7; exec /usr/local/bin/microsoft-edge; workspace $ws1'
+exec --no-startup-id i3-msg 'workspace $ws5; exec /home/nill/.local/bin/Telegram; workspace $ws7'
+exec --no-startup-id i3-msg 'workspace $ws7; exec /usr/local/bin/microsoft-edge'
 ################################################################################################################
 # End autostart
 ################################################################################################################
