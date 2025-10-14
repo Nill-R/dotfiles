@@ -82,7 +82,7 @@ set $ws3 "3: Web "
 set $ws4 "4: Bitwarden"
 set $ws5 "5: IM  "
 set $ws6 "6: Notes  "
-set $ws7 "7: Chrome"
+set $ws7 "7: Chrome "
 set $ws8 "8: XN View"
 set $ws9 "9: "
 set $ws10 "10: "
@@ -209,6 +209,7 @@ for_window [class="(?i)XnView"] border pixel 0
 font pango:Iosevka Nill Reborn 14
 #font pango:PowerlineSymbols 12
 bar {
+        strip_workspace_numbers yes
 	status_command ~/.cargo/bin/i3status-rs
 }
 ################################################################################################################
@@ -220,15 +221,14 @@ exec --no-startup-id /usr/bin/copyq
 exec --no-startup-id /usr/bin/vmware-user-suid-wrapper
 exec --no-startup-id /usr/bin/vmware-user
 exec --no-startup-id vmhgfs-fuse .host:/ /home/nill/mnt/host/
-# exec --no-startup-id /usr/bin/google-drive-ocamlfuse /home/nill/googleone/
 # To workspaces
 exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/sakura'
 exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/code'
 exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/firefox-nightly'
 exec --no-startup-id i3-msg 'workspace $ws6; exec /snap/bin/notesnook'
 exec --no-startup-id i3-msg 'workspace $ws4; exec flatpak run com.artemchep.keyguard'
-#exec --no-startup-id i3-msg 'workspace $ws5; exec /home/nill/bin/Telegram'
-exec --no-startup-id i3-msg 'workspace $ws7; exec /usr/bin/google-chrome'
+#exec --no-startup-id i3-msg 'workspace $ws5; exec ~/bin/Telegram'
+exec --no-startup-id i3-msg 'workspace $ws7; exec /usr/local/bin/google-chrome'
 exec --no-startup-id i3-msg 'workspace $ws1'
 ################################################################################################################
 # End autostart
