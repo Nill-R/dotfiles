@@ -85,7 +85,7 @@ set $ws6 "6: Joplin"
 set $ws7 "7: Direct Browser"
 set $ws8 "8: Steam"
 set $ws9 "9: LotRO"
-set $ws10 "10"
+set $ws10 "10: feh"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -165,6 +165,7 @@ assign [class="(?i)code"] $ws2
 assign [title="Firefox"] $ws3
 
 assign [title="Bitwarden"] $ws4
+assign [class="(?i)keyguard"] $ws4
 
 assign [class="TelegramDesktop"] $ws5
 
@@ -179,6 +180,8 @@ assign [class="microsoft-edge"] $ws7
 assign [class="Microsoft-edge"] $ws7
 
 assign [title="Steam$"] $ws8
+
+assign [class="(i?)feh"] $ws10
 #
 for_window [title="Picture-in-Picture"] sticky enable
 
@@ -201,6 +204,7 @@ for_window [class="(?i)chrome"] border pixel 0
 for_window [class="(?i)keyguard"] border pixel 0
 for_window [class="(?i)XnView"] border pixel 0
 for_window [class="(?i)rustdesk"] border pixel 0
+for_window [class="(?i)feh"] border pixel 0
 
 # Auto-float some windows
 # for_window [class="SomeClass"] $FLOAT
