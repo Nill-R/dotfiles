@@ -198,7 +198,11 @@ for_window [class="(?i)antigravity"] border pixel 0
 for_window [class="(?i)chrome"] border pixel 0
 for_window [class="(?i)keyguard"] border pixel 0
 for_window [class="(?i)XnView"] border pixel 0
+for_window [class="(?i)rustdesk"] border pixel 0
 
+
+for_window [class="(?i)rustdesk"] $FLOAT
+for_window [class="(?i)copyq"] $FLOAT
 # Auto-float some windows
 # for_window [class="SomeClass"] $FLOAT
 # for_window [title="Bitwarden"] $FLOAT
