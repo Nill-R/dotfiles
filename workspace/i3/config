@@ -1,19 +1,19 @@
-# sway config file
+# i3 config file (v4)
 #
 ################################################################################################################
 #
-# apt install wofi copyq  gxkb
+# apt install rofi gxkb
 #
 ################################################################################################################
 # Set mod
-set $mod Mod1
+set $mod Mod4
 # Start apps
 # start a terminal
-bindsym $mod+Return exec sakura
+bindsym $mod+Return exec /usr/bin/sakura
 # start browser
 bindsym $mod+b exec firefox
 # start launcher
-bindsym $mod+d exec "wofi -modi drun,run -show drun"
+bindsym $mod+d exec "rofi -modi drun,run -show drun"
 #End apps
 
 # Use pactl to adjust volume in PulseAudio.
@@ -79,13 +79,13 @@ bindsym $mod+a focus parent
 set $ws1 "1: Term  "
 set $ws2 "2: Code  "
 set $ws3 "3: Web "
-set $ws4 "4: BW"
+set $ws4 "4: Bitwarden"
 set $ws5 "5: IM  "
-set $ws6 "6: Joplin"
-set $ws7 "7: Yandex.Browser"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws6 "6: Notes  "
+set $ws7 "7: Chrome "
+set $ws8 "8: XN View"
+set $ws9 "9: "
+set $ws10 "10: "
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -116,7 +116,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'swaymsg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -152,27 +152,52 @@ for_window [title="Steam$"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 no_focus [window_role="pop-up"]
+
+default_border pixel 0
+
 #
-assign [title="Sakura"]  $ws1
-assign [title="Insiders$"] $ws2
-assign [title="Firefox"] $ws3
-assign [title="Bitwarden"] $ws4
+assign [class="Sakura"] $ws1
+assign [class="code"] $ws2
+assign [class="Code"] $ws2
+assign [class="(?i)antigravity"] $ws2
+assign [class="firefox-nightly"] $ws3
+assign [class="firefox"] $ws3
+assign [class="Navigator"] $ws3
+assign [class="Bitwarden"] $ws4
 assign [class="TelegramDesktop"] $ws5
-assign [title="Joplin"] $ws6
-assign [class="Yandex-browser"] $ws7
+assign [class="Joplin"] $ws6
+assign [class="notesnook"] $ws6
+assign [class="Notesnook"] $ws6
+assign [class="Yandex-browser"] $ws3
+assign [class="microsoft-edge"] $ws7
+assign [class="Microsoft-edge"] $ws7
+assign [class="chrome"] $ws7
+assign [title="Steam$"] $ws8
+assign [title="Lord$"] $ws9
+assign [class="Keyguard"] $ws4
+assign [class="keyguard"] $ws4
+assign [class="XnView"] $ws8
 #
 for_window [title="Picture-in-Picture"] sticky enable
 
 # New tiling windows with title bar and borders
-# new_window normal 2
+new_window normal 2
 # New floating windows with title bar and without borders
-# new_float normal 0
+new_float normal 0
 # Hide borders on edges
 hide_edge_borders both
 
 # Set variables for floating and un-floating commands
 set $FLOAT floating enable, border normal 0
 set $UNFLOAT floating disable, border normal 1
+
+for_window [class="(?i)firefox"] border pixel 0
+for_window [class="(?i)firefox-nightly"] border pixel 0
+for_window [class="(?i)code"] border pixel 0
+for_window [class="(?i)antigravity"] border pixel 0
+for_window [class="(?i)chrome"] border pixel 0
+for_window [class="(?i)keyguard"] border pixel 0
+for_window [class="(?i)XnView"] border pixel 0
 
 # Auto-float some windows
 # for_window [class="SomeClass"] $FLOAT
@@ -183,27 +208,30 @@ set $UNFLOAT floating disable, border normal 1
 ################################################################################################################
 # bar
 ################################################################################################################
-font pango:Fira Code Mono 8
-font pango:PowerlineSymbols 8
+font pango:Iosevka Nill Reborn 14
+#font pango:PowerlineSymbols 12
 bar {
-        status_command waybar
+        strip_workspace_numbers yes
+	status_command ~/.cargo/bin/i3status-rs
 }
 ################################################################################################################
 # autostart
 ################################################################################################################
-exec_always --no-startup-id "/usr/bin/setxkbmap -model pc105 -layout us,ua -variant ,, -option grp:caps_toggle"
-# exec_always --no-startup-id  workstyle &> /tmp/workstyle.log
+exec_always --no-startup-id "/usr/bin/setxkbmap -model pc105 -layout us,ru -variant ,, -option grp:caps_toggle,lv3:ralt_switch,misc:typo"
 exec --no-startup-id gxkb
+exec --no-startup-id /usr/bin/copyq
 exec --no-startup-id /usr/bin/vmware-user-suid-wrapper
-exec  --no-startup-id /usr/bin/copyq
-# exec --no-startup-id /usr/bin/google-drive-ocamlfuse /home/nill/googleone/
+exec --no-startup-id /usr/bin/vmware-user
+exec --no-startup-id vmhgfs-fuse .host:/ /home/nill/mnt/host/
 # To workspaces
-exec --no-startup-id swaymsg 'workspace $ws1; exec /usr/bin/sakura; workspace $ws7'
-exec --no-startup-id swaymsg 'workspace $ws2; exec /usr/bin/code-insiders; workspace $ws7'
-# exec --no-startup-id swaymsg 'workspace $ws3; exec /snap/bin/firefox; workspace $ws7'
-exec --no-startup-id swaymsg 'workspace $ws4; exec /home/nill/.local/bin/bitwarden; workspace $ws7'
-exec --no-startup-id swaymsg 'workspace $ws5; exec /snap/bin/telegram-desktop; workspace $ws7'
-exec --no-startup-id swaymsg 'workspace $ws7; exec /usr/local/bin/yandex-browser; workspace $ws1'
+exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/sakura'
+exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/antigravity'
+exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/firefox-nightly'
+exec --no-startup-id i3-msg 'workspace $ws6; exec /snap/bin/notesnook'
+exec --no-startup-id i3-msg 'workspace $ws4; exec flatpak run com.artemchep.keyguard'
+#exec --no-startup-id i3-msg 'workspace $ws5; exec ~/bin/Telegram'
+exec --no-startup-id i3-msg 'workspace $ws7; exec /usr/local/bin/google-chrome'
+exec --no-startup-id i3-msg 'workspace $ws1'
 ################################################################################################################
 # End autostart
 ################################################################################################################
