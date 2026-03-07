@@ -38,7 +38,7 @@ critical_mem = 90
 
 [[block]]
 block = "custom"
-command = "sed 's/  //' <(curl 'https://wttr.in/?format=1' -s)"
+command = "curl https://wttr.in/Yerevan?format=1 -s"
 interval = 600
 
 [[block]]
