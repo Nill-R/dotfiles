@@ -82,9 +82,9 @@ set $ws3 "3: Web "
 set $ws4 "4: BW"
 set $ws5 "5: IM  "
 set $ws6 "6: Joplin"
-set $ws7 "7: Direct Browser"
+set $ws7 "7: RU-Browser"
 set $ws8 "8: Steam"
-set $ws9 "9: LotRO"
+set $ws9 "9: XnView MP"
 set $ws10 "10: feh"
 
 # switch to workspace
@@ -161,8 +161,8 @@ assign [title="Insiders$"] $ws2
 assign [class="(?i)antigravity"] $ws2
 assign [class="(?i)code"] $ws2
 
-
-assign [title="Firefox"] $ws3
+assign [class="firefox-nightly"] $ws3
+assign [class="firefox"] $ws3
 
 assign [title="Bitwarden"] $ws4
 assign [class="(?i)keyguard"] $ws4
@@ -172,14 +172,14 @@ assign [class="TelegramDesktop"] $ws5
 assign [title="Joplin"] $ws6
 assign [class="(?i)notesnook"] $ws6
 
-
 assign [class="Yandex-browser"] $ws7
 assign [class="chrome"] $ws7
-
 assign [class="microsoft-edge"] $ws7
 assign [class="Microsoft-edge"] $ws7
 
 assign [title="Steam$"] $ws8
+
+assign [class="(?i)XnView"] $ws9
 
 assign [class="(i?)feh"] $ws10
 #

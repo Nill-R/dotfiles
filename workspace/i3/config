@@ -83,7 +83,7 @@ set $ws4 "4: Bitwarden"
 set $ws5 "5: IM  "
 set $ws6 "6: Notes  "
 set $ws7 "7: Chrome "
-set $ws8 "8: XN View"
+set $ws8 "8: XnView MP"
 set $ws9 "9: "
 set $ws10 "10: "
 
@@ -160,22 +160,26 @@ assign [class="Sakura"] $ws1
 assign [class="code"] $ws2
 assign [class="Code"] $ws2
 assign [class="(?i)antigravity"] $ws2
+
 assign [class="firefox-nightly"] $ws3
 assign [class="firefox"] $ws3
 assign [class="Navigator"] $ws3
+assign [class="Yandex-browser"] $ws3
+
 assign [class="Bitwarden"] $ws4
+assign [class="Keyguard"] $ws4
+assign [class="keyguard"] $ws4
+
 assign [class="TelegramDesktop"] $ws5
+
 assign [class="Joplin"] $ws6
 assign [class="notesnook"] $ws6
 assign [class="Notesnook"] $ws6
-assign [class="Yandex-browser"] $ws3
+
 assign [class="microsoft-edge"] $ws7
 assign [class="Microsoft-edge"] $ws7
 assign [class="chrome"] $ws7
-assign [title="Steam$"] $ws8
-assign [title="Lord$"] $ws9
-assign [class="Keyguard"] $ws4
-assign [class="keyguard"] $ws4
+
 assign [class="XnView"] $ws8
 #
 for_window [title="Picture-in-Picture"] sticky enable
