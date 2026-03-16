@@ -234,6 +234,7 @@ exec --no-startup-id vmhgfs-fuse .host:/ /home/nill/mnt/host/
 # To workspaces
 exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/sakura'
 exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/antigravity'
+exec --no-startup-id i3-msg 'exec /usr/bin/code'
 exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/firefox-nightly'
 exec --no-startup-id i3-msg 'workspace $ws6; exec /snap/bin/notesnook'
 exec --no-startup-id i3-msg 'workspace $ws4; exec flatpak run com.artemchep.keyguard'
