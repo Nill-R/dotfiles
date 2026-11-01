@@ -156,29 +156,25 @@ no_focus [window_role="pop-up"]
 default_border pixel 0
 
 #
-assign [class="Sakura"] $ws1
-assign [class="code"] $ws2
-assign [class="Code"] $ws2
+assign [class="(?i)sakura"] $ws1
+assign [class="(?i)code"] $ws2
 assign [class="(?i)antigravity"] $ws2
 
-assign [class="firefox-nightly"] $ws3
-assign [class="firefox"] $ws3
-assign [class="Navigator"] $ws3
-assign [class="Yandex-browser"] $ws3
+assign [class="(?i)firefox-nightly"] $ws3
+assign [class="(?i)firefox"] $ws3
+assign [class="(?i)Navigator"] $ws3
+assign [class="(?i)Yandex-browser"] $ws3
 
-assign [class="Bitwarden"] $ws4
-assign [class="Keyguard"] $ws4
-assign [class="keyguard"] $ws4
+assign [class="(?i)bitwarden"] $ws4
+assign [class="(?i)keyguard"] $ws4
 
 assign [class="TelegramDesktop"] $ws5
 
-assign [class="Joplin"] $ws6
-assign [class="notesnook"] $ws6
-assign [class="Notesnook"] $ws6
+assign [class="(?i)joplin"] $ws6
+assign [class="(?i)notesnook"] $ws6
 
-assign [class="microsoft-edge"] $ws7
-assign [class="Microsoft-edge"] $ws7
-assign [class="chrome"] $ws7
+assign [class="(?i)microsoft-edge"] $ws7
+assign [class="(?i)chrome"] $ws7
 
 assign [class="XnView"] $ws8
 #
@@ -232,14 +228,13 @@ exec --no-startup-id /usr/bin/vmware-user-suid-wrapper
 exec --no-startup-id /usr/bin/vmware-user
 exec --no-startup-id vmhgfs-fuse .host:/ /home/nill/mnt/host/
 # To workspaces
-exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/sakura'
-exec --no-startup-id i3-msg 'workspace $ws2; exec /usr/bin/antigravity'
+exec --no-startup-id i3-msg 'exec /usr/bin/sakura'
 exec --no-startup-id i3-msg 'exec /usr/bin/code'
-exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/firefox-nightly'
-exec --no-startup-id i3-msg 'workspace $ws6; exec /snap/bin/notesnook'
-exec --no-startup-id i3-msg 'workspace $ws4; exec flatpak run com.artemchep.keyguard'
-#exec --no-startup-id i3-msg 'workspace $ws5; exec ~/bin/Telegram'
-exec --no-startup-id i3-msg 'workspace $ws7; exec /usr/local/bin/google-chrome'
+exec --no-startup-id i3-msg 'exec /usr/bin/firefox-nightly'
+exec --no-startup-id i3-msg 'exec ~/.local/bin/notesnook'
+exec --no-startup-id i3-msg 'exec flatpak run com.artemchep.keyguard'
+#exec --no-startup-id i3-msg 'exec ~/bin/Telegram'
+exec --no-startup-id i3-msg 'exec /usr/bin/google-chrome'
 exec --no-startup-id i3-msg 'workspace $ws1'
 ################################################################################################################
 # End autostart
